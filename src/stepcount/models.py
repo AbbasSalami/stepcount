@@ -228,7 +228,8 @@ class StepCounter:
         def fn(chunk):
             """ Process the chunk. Apply padding if length is not enough. """
             n = len(chunk)
-            x = chunk[['x', 'y', 'z']].to_numpy()
+            # x = chunk[['x', 'y', 'z']].to_numpy()
+            x = chunk.copy()
             if n == self.window_len:
                 x = x
             elif n > self.window_len:
