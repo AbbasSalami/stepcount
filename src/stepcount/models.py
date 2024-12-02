@@ -500,9 +500,14 @@ def make_windows(data, window_sec, fn=None, return_index=False, verbose=True):
         def fn(x):
             return x
 
+    data_new = data[['x','y','z']].to_numpy() 
     X, T = [], []
+    start_sample = 0 # keep track of how much of dataframe used in each resample
+
     for t, x in tqdm(data.resample(f"{window_sec}s", origin="start"), mininterval=5, disable=not verbose):
-        x = fn(x)
+        end_sample = start_sample + len(x) 
+        x = fn(data_new[start_sample:end_sample])
+        start_sample = end_sample
         X.append(x)
         T.append(t)
 
