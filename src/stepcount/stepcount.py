@@ -136,9 +136,9 @@ def main():
     Y, W, T_steps = model.predict_from_frame(data)
 
     # Save step counts
-    # Y.to_csv(f"{outdir}/{basename}-Steps.csv.gz")
+    Y.to_csv(f"{outdir}/{basename}-Steps.csv.gz")
     # Save timestamps of each step
-    # T_steps.to_csv(f"{outdir}/{basename}-StepTimes.csv.gz", index=False)
+    T_steps.to_csv(f"{outdir}/{basename}-StepTimes.csv.gz", index=False)
 
     # ENMO summary
     enmo_summary = summarize_enmo(data)
@@ -306,7 +306,7 @@ def main():
     hourly.index.name = 'Time'
     hourly.reset_index(inplace=True)
     hourly.insert(0, 'Filename', info['Filename'])  # add filename for reference
-    # hourly.to_csv(f"{outdir}/{basename}-Hourly.csv.gz", index=False)
+    hourly.to_csv(f"{outdir}/{basename}-Hourly.csv.gz", index=False)
     del hourly  # free memory
 
     # Save hourly data, adjusted
@@ -317,7 +317,7 @@ def main():
     hourly_adj.index.name = 'Time'
     hourly_adj.reset_index(inplace=True)
     hourly_adj.insert(0, 'Filename', info['Filename'])  # add filename for reference
-    # hourly_adj.to_csv(f"{outdir}/{basename}-HourlyAdjusted.csv.gz", index=False)
+    hourly_adj.to_csv(f"{outdir}/{basename}-HourlyAdjusted.csv.gz", index=False)
     del hourly_adj  # free memory
 
     # Save minutely data
@@ -328,7 +328,7 @@ def main():
     minutely.index.name = 'Time'
     minutely.reset_index(inplace=True)
     minutely.insert(0, 'Filename', info['Filename'])  # add filename for reference
-    # minutely.to_csv(f"{outdir}/{basename}-Minutely.csv.gz", index=False)
+    minutely.to_csv(f"{outdir}/{basename}-Minutely.csv.gz", index=False)
     del minutely  # free memory
 
     # Save minutely data, adjusted
@@ -339,7 +339,7 @@ def main():
     minutely_adj.index.name = 'Time'
     minutely_adj.reset_index(inplace=True)
     minutely_adj.insert(0, 'Filename', info['Filename'])  # add filename for reference
-    # minutely_adj.to_csv(f"{outdir}/{basename}-MinutelyAdjusted.csv.gz", index=False)
+    minutely_adj.to_csv(f"{outdir}/{basename}-MinutelyAdjusted.csv.gz", index=False)
     del minutely_adj  # free memory
 
     # Save daily data
@@ -351,7 +351,7 @@ def main():
     daily.index.name = 'Date'
     daily.reset_index(inplace=True)
     daily.insert(0, 'Filename', info['Filename'])  # add filename for reference
-    # daily.to_csv(f"{outdir}/{basename}-Daily.csv.gz", index=False)
+    daily.to_csv(f"{outdir}/{basename}-Daily.csv.gz", index=False)
     # del daily  # still needed for printing
 
     # Save daily data, adjusted
@@ -363,12 +363,12 @@ def main():
     daily_adj.index.name = 'Date'
     daily_adj.reset_index(inplace=True)
     daily_adj.insert(0, 'Filename', info['Filename'])  # add filename for reference
-    # daily_adj.to_csv(f"{outdir}/{basename}-DailyAdjusted.csv.gz", index=False)
+    daily_adj.to_csv(f"{outdir}/{basename}-DailyAdjusted.csv.gz", index=False)
     # del daily_adj  # still needed for printing
 
     # Save bouts data
     bouts_summary['bouts'].insert(0, 'Filename', info['Filename'])  # add filename for reference
-    # bouts_summary['bouts'].to_csv(f"{outdir}/{basename}-Bouts.csv.gz", index=False)
+    bouts_summary['bouts'].to_csv(f"{outdir}/{basename}-Bouts.csv.gz", index=False)
 
     # Print
     # print("\nSummary\n-------")
